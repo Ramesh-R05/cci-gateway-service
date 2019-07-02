@@ -50,7 +50,7 @@ resources:
   - name: gateway-service-master-docker-registry
     type: image
     pointer:
-      sourceName: "317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service"
+      sourceName: #change to something that exists "317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service"
     seed:
       versionName: latest
 
