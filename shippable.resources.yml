@@ -86,7 +86,7 @@ resources:
   - name: gateway-service-sit-alb
     type: loadBalancer
     pointer:
-      sourceName: arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:loadbalancer/app/gateway-service-sit/d097ab6b33a7c347
+      sourceName: arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:targetgroup/gateway-service-sit/da32e870c119f00f
       method: application
 
   # AWS SIT:8080 load Balancer - Listing service - feature BRANCH
