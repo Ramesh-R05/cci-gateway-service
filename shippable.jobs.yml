@@ -1,4 +1,4 @@
-# This jobs are only used for Listing SErvice
+# This jobs are only used for gateway service
 
 ####################################################################
 # Refer to http://docs.shippable.com/reference/jobs-overview/      #
@@ -27,7 +27,7 @@ jobs:
   # - name: gateway-service-sit-deploy-branch
   #   type: deploy
   #   always:
-  #     - NOTIFY: listing-slack-notifications
+  #     - NOTIFY: gateway-service-slack-notifications
   #   steps:
   #     - IN: gateway-service-manifest-branch # for non-master, don't auto deploy.
   #       switch: off
@@ -53,7 +53,7 @@ jobs:
   - name: gateway-service-sit-deploy-master
     type: deploy
     always:
-      - NOTIFY: listing-slack-notifications
+      - NOTIFY: gateway-service-slack-notifications
     steps:
       - IN: gateway-service-manifest-master # for master - auto deploy to SIT
         switch: on
@@ -71,7 +71,7 @@ jobs:
   # - name: gateway-service-smoketest
   #   type: runSh
   #   always:
-  #     - NOTIFY: listing-slack-notifications
+  #     - NOTIFY: gateway-service-slack-notifications
   #   steps:
   #   - IN: gateway-service-sit-deploy-master
   #   - IN: gateway-service-repo
@@ -106,7 +106,7 @@ jobs:
   # - name: gateway-service-prod-deploy-master
   #   type: deploy
   #   always:
-  #     - NOTIFY: listing-slack-notifications
+  #     - NOTIFY: gateway-service-slack-notifications
   #     - NOTIFY: gateway-service-deployment-notifications
   #   steps:
   #     - IN: gateway-service-package-master

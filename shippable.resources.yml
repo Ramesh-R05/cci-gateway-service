@@ -32,7 +32,7 @@ resources:
       branch: master
 
   # Slack connection
-  - name: listing-slack-notifications
+  - name: gateway-service-slack-notifications
     type: notification                          #required
     integration: slack-bauerxcelmedia
     pointer:
