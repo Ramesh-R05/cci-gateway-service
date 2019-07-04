@@ -105,7 +105,7 @@ resources:
         APP_ENV: "sit"
         APM_KEY: "c777240932e6282ffacc6a42ae6a0709426522bb"
         # APP_SERVICES_ACCESS_KEY - SIT
-        secure: LqN4OOVQ1rBBqiRwlom7xyTQ/TSfMawsZD2WuDw3Bk43A9j1MYzBLWAD/nRySsDWiJUBqPfQOwR614hplC2eZUs5dCO/8A09nSUjJUUkdvBnNzT4HU4cZcG8YtM8pIfvw7qnxNcATH35J+iYxjrJvKiJU2fZMaCd/8/UGADrZH6v1BRrjrujkvNcniMLIzqmjRY+dHB94WV9CoXfGKTb1T5nM715/3070YW+3Aa4C+HJSsP2krJRw7icOE13uieofQVZcaNNy1xaodgIr7zmLuUyL78zjuVzvrn867Nq/lYa8/9mWp6Ssj/jRR7tUGzPNib0YT1KV/zovbq5WJtOJQ==
+        secure: MosTuUh8HNNQf8KwUV1LDZLJUSLgkmoNWQM/issgSWGsnnBKOn5WM9HMt0Bdw3eILfBTt2JPKDq7vZ12tmcx+5HLtmMxvwN0svhX5pXWuxjGJKptQuZiCWJlM/wCYfhxzy+4BwBUcW6GpzDlwIs5WM+ayGeEnNJLd/N0/5VLwlUyMtrh1LZOT/jhM+hq73x+/dFh4fOeZZUh04vlaADkW6zBwIOiN+5+KKUpuNUALaKroCX103YMViXNqKMFj94Ffhi9o3Z5GhbCFOpGIQWa6OfkLPoAJ0qT9QHnhCQkTqafGOT8zV15j4/8VJjvUndj4IEZUT48UN/Qg7jsgGm33w==
 
   ####################################
   # PROD environment configuration
