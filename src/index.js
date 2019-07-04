@@ -1,15 +1,17 @@
+/* eslint-disable global-require */
 require('dotenv').config();
 require('@babel/register')({
     presets: ['@babel/preset-env']
 });
 require('@babel/polyfill');
 
-const createServer = require('./app/server').default;
+process.env.APP_KEY = 'gateway-service';
+process.title = process.env.APP_KEY;
+
 const logger = require('./app/server/logger').default;
 
 try {
-    process.env.APP_KEY = 'gateway-service';
-    process.title = process.env.APP_KEY;
+    const createServer = require('./app/server').default;
     const { server, port } = createServer();
 
     server.listen(port, err => {
@@ -19,8 +21,8 @@ try {
             throw err;
         }
 
-        logger.debug({ message: `gateway-service listing on port: ${port}` });
+        logger.debug(`gateway-service listing on port: ${port}`);
     });
 } catch (err) {
-    logger.error({ message: `gateway-service failed to create server`, err });
+    logger.error({ message: 'Application error', error: err });
 }
