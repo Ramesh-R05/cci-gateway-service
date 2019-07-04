@@ -1,0 +1,4 @@
+
+{
+  "extends": ["./node_modules/@bxm/code-quality/lib/eslint/standard.js"]
+}
