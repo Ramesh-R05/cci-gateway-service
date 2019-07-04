@@ -13,33 +13,33 @@ jobs:
     type: runCI
     steps:
       - OUT: gateway-service-master-docker-registry
-      - OUT: gateway-service-branch-docker-registry
+      # - OUT: gateway-service-branch-docker-registry
 
-  # 2branch. Manifest for a BRANCH image
-  - name: gateway-service-manifest-branch
-    type: manifest
-    steps:
-      - IN: gateway-service-branch-docker-registry
-      - IN: gateway-service-docker-opts
-      - TASK: managed
+  # # 2branch. Manifest for a BRANCH image
+  # - name: gateway-service-manifest-branch
+  #   type: manifest
+  #   steps:
+  #     - IN: gateway-service-branch-docker-registry
+  #     - IN: gateway-service-docker-opts
+  #     - TASK: managed
 
-  # 3Branch. SIT deployment for feature BRANCH
-  - name: gateway-service-sit-deploy-branch
-    type: deploy
-    always:
-      - NOTIFY: listing-slack-notifications
-    steps:
-      - IN: gateway-service-manifest-branch # for non-master, don't auto deploy.
-        switch: off
-      - IN: gateway-service-sit-ecs
-      - IN: gateway-service-sit-params
-      - IN: gateway-service-sit-alb-branch
-        applyTo:
-          - manifest: gateway-service-manifest-branch
-            image: gateway-service-branch-docker-registry
-            port: 3000
-      - TASK: managed
-        deployMethod: replace
+  # # 3Branch. SIT deployment for feature BRANCH
+  # - name: gateway-service-sit-deploy-branch
+  #   type: deploy
+  #   always:
+  #     - NOTIFY: listing-slack-notifications
+  #   steps:
+  #     - IN: gateway-service-manifest-branch # for non-master, don't auto deploy.
+  #       switch: off
+  #     - IN: gateway-service-sit-ecs
+  #     - IN: gateway-service-sit-params
+  #     - IN: gateway-service-sit-alb-branch
+  #       applyTo:
+  #         - manifest: gateway-service-manifest-branch
+  #           image: gateway-service-branch-docker-registry
+  #           port: 3000
+  #     - TASK: managed
+  #       deployMethod: replace
 
   # 2. Manifest for MASTER image
   - name: gateway-service-manifest-master
@@ -67,27 +67,27 @@ jobs:
       - TASK: managed
         deployMethod: replace
 
-  # 4. Run smoke test on SIT environment
-  - name: gateway-service-smoketest
-    type: runSh
-    always:
-      - NOTIFY: listing-slack-notifications
-    steps:
-    - IN: gateway-service-sit-deploy-master
-    - IN: gateway-service-repo
-      switch: off
-    - TASK:
-      - script: curl http://services.sit.bxm.internal/listing/
-      - script: curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
-      - script: source ~/.nvm/nvm.sh
-      - script: cd ./IN/gateway-service-repo/gitRepo/src
-      - script: nvm install "8.9.1"
-      - script: nvm use "8.9.1"
-      - script: npm set @bxm:registry http://npm.digital.bauer-media.net.au
-      - script: npm install
-      - script: URL=http://services.sit.bxm.internal/listing/ npm run test:smoke
-    on_failure:
-      - NOTIFY: gateway-service-deployment-notifications
+  # # 4. Run smoke test on SIT environment
+  # - name: gateway-service-smoketest
+  #   type: runSh
+  #   always:
+  #     - NOTIFY: listing-slack-notifications
+  #   steps:
+  #   - IN: gateway-service-sit-deploy-master
+  #   - IN: gateway-service-repo
+  #     switch: off
+  #   - TASK:
+  #     - script: curl http://services.sit.bxm.internal/listing/
+  #     - script: curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+  #     - script: source ~/.nvm/nvm.sh
+  #     - script: cd ./IN/gateway-service-repo/gitRepo/src
+  #     - script: nvm install "8.9.1"
+  #     - script: nvm use "8.9.1"
+  #     - script: npm set @bxm:registry http://npm.digital.bauer-media.net.au
+  #     - script: npm install
+  #     - script: URL=http://services.sit.bxm.internal/listing/ npm run test:smoke
+  #   on_failure:
+  #     - NOTIFY: gateway-service-deployment-notifications
 
   # 5. Package release for production release
   - name: gateway-service-package-master
@@ -95,28 +95,28 @@ jobs:
     steps:
       - IN: gateway-service-manifest-master
         switch: off
-      - IN: gateway-service-smoketest
+      # - IN: gateway-service-smoketest
       - IN: gateway-service-version
       - TASK: managed
         bump: minor
     on_success:
       - NOTIFY: gateway-service-deployment-notifications
 
-  # 6. PROD deployment for MASTER
-  - name: gateway-service-prod-deploy-master
-    type: deploy
-    always:
-      - NOTIFY: listing-slack-notifications
-      - NOTIFY: gateway-service-deployment-notifications
-    steps:
-      - IN: gateway-service-package-master
-        switch: off
-      - IN: gateway-service-prod-ecs
-      - IN: gateway-service-prod-params
-      - IN: gateway-service-prod-alb
-        applyTo:
-        - manifest: gateway-service-manifest-master
-          image: gateway-service-master-docker-registry
-          port: 3000
-      - TASK: managed
-        deployMethod: upgrade
+  # # 6. PROD deployment for MASTER
+  # - name: gateway-service-prod-deploy-master
+  #   type: deploy
+  #   always:
+  #     - NOTIFY: listing-slack-notifications
+  #     - NOTIFY: gateway-service-deployment-notifications
+  #   steps:
+  #     - IN: gateway-service-package-master
+  #       switch: off
+  #     - IN: gateway-service-prod-ecs
+  #     - IN: gateway-service-prod-params
+  #     - IN: gateway-service-prod-alb
+  #       applyTo:
+  #       - manifest: gateway-service-manifest-master
+  #         image: gateway-service-master-docker-registry
+  #         port: 3000
+  #     - TASK: managed
+  #       deployMethod: upgrade

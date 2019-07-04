@@ -19,7 +19,7 @@ resources:
       logConfig:
         type: awslogs
         options:
-          awslogs-group: "services_ecs"
+          awslogs-group: "app_ecs"
           awslogs-region: "ap-southeast-2"
           awslogs-stream-prefix: "gateway-service"
 
@@ -50,17 +50,17 @@ resources:
   - name: gateway-service-master-docker-registry
     type: image
     pointer:
-      sourceName: #change to something that exists "317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service"
+      sourceName: 317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service
     seed:
       versionName: latest
 
   # Feature BRANCH Docker Image for the listing service
-  - name: gateway-service-branch-docker-registry
-    type: image
-    pointer:
-      sourceName: # "317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service" # change to something that exists
-    seed:
-      versionName: latest
+  # - name: gateway-service-branch-docker-registry
+  #   type: image
+  #   pointer:
+  #     sourceName: 317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service
+  #   seed:
+  #     versionName: latest
 
   # Seed Release version
     # for Rollback refer to below URL
@@ -79,22 +79,22 @@ resources:
     type: cluster
     integration: digital-nonprod-AWS
     pointer:
-      sourceName : "services_ecs"
+      sourceName : "app_ecs"
       region: "ap-southeast-2"
 
   # AWS SIT load Balancer - Listing - MASTER branch
   - name: gateway-service-sit-alb
     type: loadBalancer
     pointer:
-      sourceName: # change to something that exists "arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:targetgroup/gateway-service-sit/1959e59911a007ac"
+      sourceName: arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:loadbalancer/app/gateway-service-sit/d097ab6b33a7c347
       method: application
 
   # AWS SIT:8080 load Balancer - Listing service - feature BRANCH
-  - name: gateway-service-sit-alb-branch
-    type: loadBalancer
-    pointer:
-      sourceName: #change to something that exists "arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:targetgroup/gateway-service-branch-sit/9465aacd1ebea5d1"
-      method: application
+  # - name: gateway-service-sit-alb-branch
+  #   type: loadBalancer
+  #   pointer:
+  #     sourceName: #change to something that exists "arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:targetgroup/gateway-service-branch-sit/9465aacd1ebea5d1"
+  #     method: application
 
   # AWS TEST load Balancer - Listing service SIT - MASTER branch
   - name: gateway-service-sit-params
@@ -104,7 +104,6 @@ resources:
         NODE_ENV: "dev"
         APP_ENV: "sit"
         APM_KEY: "c777240932e6282ffacc6a42ae6a0709426522bb"
-        APP_MOUNT_PATH: "listing/"
         # APP_SERVICES_ACCESS_KEY - SIT
         secure: LqN4OOVQ1rBBqiRwlom7xyTQ/TSfMawsZD2WuDw3Bk43A9j1MYzBLWAD/nRySsDWiJUBqPfQOwR614hplC2eZUs5dCO/8A09nSUjJUUkdvBnNzT4HU4cZcG8YtM8pIfvw7qnxNcATH35J+iYxjrJvKiJU2fZMaCd/8/UGADrZH6v1BRrjrujkvNcniMLIzqmjRY+dHB94WV9CoXfGKTb1T5nM715/3070YW+3Aa4C+HJSsP2krJRw7icOE13uieofQVZcaNNy1xaodgIr7zmLuUyL78zjuVzvrn867Nq/lYa8/9mWp6Ssj/jRR7tUGzPNib0YT1KV/zovbq5WJtOJQ==
 
@@ -112,29 +111,29 @@ resources:
   # PROD environment configuration
   ####################################
 
-  # AWS Non Prod Cluster
-  - name: gateway-service-prod-ecs
-    type: cluster
-    integration: digital-prod-AWS
-    pointer:
-      sourceName : "services_ecs"
-      region: "ap-southeast-2"
+  # # AWS Non Prod Cluster
+  # - name: gateway-service-prod-ecs
+  #   type: cluster
+  #   integration: digital-prod-AWS
+  #   pointer:
+  #     sourceName : "services_ecs"
+  #     region: "ap-southeast-2"
 
-  # AWS PROD load Balancer - Listing service PROD - internal - MASTER branch
-  - name: gateway-service-prod-alb
-    type: loadBalancer
-    pointer:
-      sourceName: #change to something that exists "arn:aws:elasticloadbalancing:ap-southeast-2:622156575630:targetgroup/gateway-service-prod/35e44a14a1fc3422"
-      method: application
+  # # AWS PROD load Balancer - Listing service PROD - internal - MASTER branch
+  # - name: gateway-service-prod-alb
+  #   type: loadBalancer
+  #   pointer:
+  #     sourceName: #change to something that exists "arn:aws:elasticloadbalancing:ap-southeast-2:622156575630:targetgroup/gateway-service-prod/35e44a14a1fc3422"
+  #     method: application
 
-  # PROD parameters
-  - name: gateway-service-prod-params
-    type: params
-    version:
-      params:
-        NODE_ENV: "production"
-        APP_ENV: "prod"
-        APP_MOUNT_PATH: "listing/"
-        APM_KEY: "c777240932e6282ffacc6a42ae6a0709426522bb"
-        # APP_SERVICES_ACCESS_KEY = PROD
-        secure: grgiNv7l5G1a/BJy/ZdeUkec8qe0FqiYCUpPQh/MATI3p69wqpA5KW9Rx3JU4s6eI62yv13hvsliux6mHPDlM4pqXttCONIFxwkuJm+9dgtGWlruWD+EKaglPa+gB7yVwDQgHgBqA/dwosrD0hiEg5deEU3yeNhht0kOwsPOTfeD89hFM6qk1UmKIfl8VouhIyFLqIV97anXc94gM9G7+vDvg5GMF0eSatjYjdgQ80iRpkqMPkA1cH/Dn0ptIgIXtkv2f8RxeJ/OSAhjCpH+/My7PQC/j6Khs7QhSgaMGSy55Nxyg5qd+j4zB0bAfm+6EUvvIc0ULXlfRlbIsyJoNw==
+  # # PROD parameters
+  # - name: gateway-service-prod-params
+  #   type: params
+  #   version:
+  #     params:
+  #       NODE_ENV: "production"
+  #       APP_ENV: "prod"
+  #       APP_MOUNT_PATH: "listing/"
+  #       APM_KEY: "c777240932e6282ffacc6a42ae6a0709426522bb"
+  #       # APP_SERVICES_ACCESS_KEY = PROD
+  #       secure: grgiNv7l5G1a/BJy/ZdeUkec8qe0FqiYCUpPQh/MATI3p69wqpA5KW9Rx3JU4s6eI62yv13hvsliux6mHPDlM4pqXttCONIFxwkuJm+9dgtGWlruWD+EKaglPa+gB7yVwDQgHgBqA/dwosrD0hiEg5deEU3yeNhht0kOwsPOTfeD89hFM6qk1UmKIfl8VouhIyFLqIV97anXc94gM9G7+vDvg5GMF0eSatjYjdgQ80iRpkqMPkA1cH/Dn0ptIgIXtkv2f8RxeJ/OSAhjCpH+/My7PQC/j6Khs7QhSgaMGSy55Nxyg5qd+j4zB0bAfm+6EUvvIc0ULXlfRlbIsyJoNw==
