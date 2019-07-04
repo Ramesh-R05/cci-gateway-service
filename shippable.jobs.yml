@@ -9,7 +9,7 @@
 jobs:
 
   # 1. Sync pipeline to CI
-  - name: gateway-service
+  - name: gateway-service_runCI
     type: runCI
     steps:
       - OUT: gateway-service-master-docker-registry
