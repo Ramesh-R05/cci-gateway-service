@@ -10,8 +10,8 @@
     "fmt:js": "bxm-fmt-js --write 'src/**/*.js' '.*/*.js'",
     "lint": "run-s fmt:js lint:js",
     "test": "mocha --require @babel/register --require @babel/polyfill --ui bdd --require tests/setup.js tests --recursive",
-    "test:ci": "mocha --require @babel/register --require @babel/polyfill --require tests/setup.js --reporter xunit --reporter-options output=../../shippable/testresults/unit.xml tests --recursive",
-    "test:ci:cover": "nyc --include-all-sources --dir ../shippable/codecoverage -r=cobertura -r=html -r=text npm run test:ci",
+    "test:ci": "mocha --require @babel/register --require @babel/polyfill --require tests/setup.js --reporter xunit --reporter-options output=../shippable/testresults/unit.xml tests --recursive",
+    "test:ci:cover": "nyc --include-all-sources --report-dir ../shippable/codecoverage -r=cobertura npm run test:ci",
     "test:cover": "nyc --include-all-sources --dir ../shippable/codecoverage -r=cobertura -r=html -r=text npm run test",
     "tdd": "npm run test -- --watch"
   },
