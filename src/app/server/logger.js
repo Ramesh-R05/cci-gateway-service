@@ -26,10 +26,10 @@ if (process.env.APP_ENV === 'prod' || process.env.APP_ENV === 'sit' || process.e
 } else {
     logger.transports.console.timestamp = () => {
         const d = new Date();
-        const h = ('0' + d.getHours()).slice(-2);
-        const m = ('0' + d.getMinutes()).slice(-2);
-        const s = ('0' + d.getSeconds()).slice(-2);
-        const ms = ('00' + d.getMilliseconds()).slice(-3);
+        const h = `0${d.getHours()}`.slice(-2);
+        const m = `0${d.getMinutes()}`.slice(-2);
+        const s = `0${d.getSeconds()}`.slice(-2);
+        const ms = `00${d.getMilliseconds()}`.slice(-3);
 
         return `${h}:${m}:${s}.${ms}`;
     };

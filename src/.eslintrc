@@ -1,4 +1,12 @@
 
 {
-  "extends": ["./node_modules/@bxm/code-quality/lib/eslint/standard.js"]
+  "extends": ["./node_modules/@bxm/code-quality/lib/eslint/standard.js"],
+  "overrides": [
+    {
+      "files": ["tests/**/*.js"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ],
 }

@@ -6,14 +6,20 @@
   "scripts": {
     "start": "node index.js",
     "dev": "APP_DEBUG=true nodemon index.js",
-    "lint:js": "bxm-lint-js --fix --ext .js '.*/*.js'",
-    "fmt:js": "bxm-fmt-js --write 'src/**/*.js' '.*/*.js'",
+    "lint:js": "bxm-lint-js --fix --ext .js 'app/**/*.js' 'tests/**/*.js'",
+    "fmt:js": "bxm-fmt-js --write 'app/**/*.js' 'tests/**/*.js'",
     "lint": "run-s fmt:js lint:js",
     "test": "mocha --require @babel/register --require @babel/polyfill --ui bdd --require tests/setup.js tests --recursive",
     "test:ci": "mocha --require @babel/register --require @babel/polyfill --require tests/setup.js --reporter xunit --reporter-options output=../shippable/testresults/unit.xml tests --recursive",
     "test:ci:cover": "nyc --include-all-sources --report-dir ../shippable/codecoverage -r=cobertura npm run test:ci",
     "test:cover": "nyc --include-all-sources --dir ../shippable/codecoverage -r=cobertura -r=html -r=text npm run test",
     "tdd": "npm run test -- --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run test",
+      "pre-commit": "npm run lint"
+    }
   },
   "author": "nprodromou@bauerxcelmedia.com.au",
   "license": "ISC",
@@ -34,6 +40,7 @@
     "babel-core": "^6.26.3",
     "babel-plugin-istanbul": "^5.1.4",
     "chai": "^4.2.0",
+    "husky": "^3.0.0",
     "mocha": "^6.1.4",
     "nock": "^10.0.6",
     "nodemon": "^1.19.1",

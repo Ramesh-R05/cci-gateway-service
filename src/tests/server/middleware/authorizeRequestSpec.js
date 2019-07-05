@@ -63,6 +63,7 @@ describe('authorizeRequest middleware', () => {
             it('throws an error and calls next with the error, disallowing the request to continue through the middleware chain', () => {
                 try {
                     expect(testArgs.next).to.be.calledWithExactly(mockError);
+                    // eslint-disable-next-line no-empty
                 } catch (e) {}
             });
         });
