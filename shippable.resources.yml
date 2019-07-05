@@ -50,7 +50,7 @@ resources:
   - name: gateway-service-master-docker-registry
     type: image
     pointer:
-      sourceName: 317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service
+      sourceName: '317367993082.dkr.ecr.ap-southeast-2.amazonaws.com/gateway-service'
     seed:
       versionName: latest  
 
@@ -66,6 +66,12 @@ resources:
   # NON PROD environment configuration
   ####################################
 
+# NON PROD - Number of task to run in AWS cluster
+  - name: gateway-service-replicas-non-prod
+    type: replicas
+    version:
+      count: 3
+
   # AWS Non Prod Cluster
   - name: gateway-service-sit-ecs
     type: cluster
@@ -78,7 +84,7 @@ resources:
   - name: gateway-service-sit-alb
     type: loadBalancer
     pointer:
-      sourceName: arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:targetgroup/gateway-service-sit/da32e870c119f00f
+      sourceName: 'arn:aws:elasticloadbalancing:ap-southeast-2:014901580825:targetgroup/gateway-service-sit/da32e870c119f00f'
       method: application
 
   # AWS TEST load Balancer - Listing service SIT - MASTER branch
@@ -96,6 +102,12 @@ resources:
   # PROD environment configuration
   ####################################
 
+   # PROD - Number of task to run in AWS cluster
+  - name: gateway-service-replicas-production
+    type: replicas
+    version:
+      count: 3
+
   # AWS Prod Cluster
   - name: gateway-service-prod-ecs
     type: cluster
@@ -108,7 +120,7 @@ resources:
   - name: gateway-service-prod-alb
     type: loadBalancer
     pointer:
-      sourceName: arn:aws:elasticloadbalancing:ap-southeast-2:622156575630:targetgroup/gateway-service-prod/fc00f62d417d8be1
+      sourceName: 'arn:aws:elasticloadbalancing:ap-southeast-2:622156575630:targetgroup/gateway-service-prod/fc00f62d417d8be1'
       method: application
 
   # PROD parameters

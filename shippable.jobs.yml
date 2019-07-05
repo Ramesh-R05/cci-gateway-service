@@ -28,7 +28,7 @@ jobs:
       - NOTIFY: gateway-service-slack-notifications
     steps:
       - IN: gateway-service-man-master # for master - auto deploy to SIT
-        force: true
+      - IN: gateway-service-replicas-non-prod
         switch: on
       - IN: gateway-service-sit-ecs
       - IN: gateway-service-sit-params
@@ -45,7 +45,6 @@ jobs:
     type: release
     steps:
       - IN: gateway-service-man-master
-        force: true
         switch: off
       - IN: gateway-service-sit-deploy-master
       - IN: gateway-service-version
@@ -62,9 +61,8 @@ jobs:
       - NOTIFY: gateway-service-deployment-notifications
     steps:
       - IN: gateway-service-package-master
+      - IN: gateway-service-replicas-production
         switch: off
-      - IN: gateway-service-man-master
-        force: true
       - IN: gateway-service-prod-ecs
       - IN: gateway-service-prod-params
       - IN: gateway-service-prod-alb

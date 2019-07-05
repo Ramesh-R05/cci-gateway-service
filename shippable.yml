@@ -1,0 +1,5 @@
+# this setting is to ignore the shippable-pipeline branch and any pipeline/* branch in the runCI job
+branches:
+  except:
+    - shippable-pipeline
+    - pipeline/*
