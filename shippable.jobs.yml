@@ -67,6 +67,7 @@ jobs:
       - IN: gateway-service-prod-alb
         applyTo:
         - manifest: gateway-service-man-master
+          force: true
           image: gateway-service-master-docker-registry
           port: 3000
       - TASK: managed
