@@ -70,4 +70,4 @@ jobs:
           image: gateway-service-master-docker-registry
           port: 3000
       - TASK: managed
-        deployMethod: upgrade
+        deployMethod: replace
