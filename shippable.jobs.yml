@@ -46,6 +46,7 @@ jobs:
     steps:
       - IN: gateway-service-manifest-master
         switch: off
+      - IN: gateway-service-sit-deploy-master
       - IN: gateway-service-version
       - TASK: managed
         bump: minor
