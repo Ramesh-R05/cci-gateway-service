@@ -7,12 +7,11 @@
 ####################################################################
 
 jobs:
-
   # 1. Sync pipeline to CI
   - name: gateway-service_runCI
     type: runCI
     steps:
-      - OUT: gateway-service-master-docker-registry  
+      - OUT: gateway-service-master-docker-registry
 
   # 2. Manifest for MASTER image
   - name: gateway-service-man-master
@@ -36,7 +35,7 @@ jobs:
         applyTo:
           - manifest: gateway-service-man-master
             image: gateway-service-master-docker-registry
-            port: 3000      
+            port: 3000
       - TASK: managed
         deployMethod: replace
 
@@ -45,6 +44,7 @@ jobs:
     type: release
     steps:
       - IN: gateway-service-man-master
+        force: true
         switch: off
       - IN: gateway-service-sit-deploy-master
       - IN: gateway-service-version
@@ -66,9 +66,8 @@ jobs:
       - IN: gateway-service-prod-params
       - IN: gateway-service-prod-alb
         applyTo:
-        - manifest: gateway-service-man-master
-          force: true
-          image: gateway-service-master-docker-registry
-          port: 3000
+          - manifest: gateway-service-man-master
+            image: gateway-service-master-docker-registry
+            port: 3000
       - TASK: managed
         deployMethod: upgrade
