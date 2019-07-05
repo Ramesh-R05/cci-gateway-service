@@ -60,9 +60,9 @@ jobs:
       - NOTIFY: gateway-service-slack-notifications
       - NOTIFY: gateway-service-deployment-notifications
     steps:
-      - IN: gateway-service-package-master
-      - IN: gateway-service-replicas-production
+      - IN: gateway-service-package-master      
         switch: off
+      - IN: gateway-service-replicas-production
       - IN: gateway-service-prod-ecs
       - IN: gateway-service-prod-params
       - IN: gateway-service-prod-alb
