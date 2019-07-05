@@ -96,12 +96,12 @@ resources:
   # PROD environment configuration
   ####################################
 
-  # AWS Non Prod Cluster
+  # AWS Prod Cluster
   - name: gateway-service-prod-ecs
     type: cluster
     integration: digital-prod-AWS
     pointer:
-      sourceName : "services_ecs"
+      sourceName : "app_ecs"
       region: "ap-southeast-2"
 
   # AWS PROD load Balancer - Listing service PROD - internal - MASTER branch
