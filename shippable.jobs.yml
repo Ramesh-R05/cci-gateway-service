@@ -15,7 +15,7 @@ jobs:
       - OUT: gateway-service-master-docker-registry  
 
   # 2. Manifest for MASTER image
-  - name: gateway-service-manifest-master
+  - name: gateway-service-man-master
     type: manifest
     steps:
       - IN: gateway-service-master-docker-registry
@@ -28,13 +28,13 @@ jobs:
     always:
       - NOTIFY: gateway-service-slack-notifications
     steps:
-      - IN: gateway-service-manifest-master # for master - auto deploy to SIT
+      - IN: gateway-service-man-master # for master - auto deploy to SIT
         switch: on
       - IN: gateway-service-sit-ecs
       - IN: gateway-service-sit-params
       - IN: gateway-service-sit-alb
         applyTo:
-          - manifest: gateway-service-manifest-master
+          - manifest: gateway-service-man-master
             image: gateway-service-master-docker-registry
             port: 3000      
       - TASK: managed
@@ -44,7 +44,7 @@ jobs:
   - name: gateway-service-package-master
     type: release
     steps:
-      - IN: gateway-service-manifest-master
+      - IN: gateway-service-man-master
         switch: off
       - IN: gateway-service-sit-deploy-master
       - IN: gateway-service-version
@@ -66,8 +66,8 @@ jobs:
       - IN: gateway-service-prod-params
       - IN: gateway-service-prod-alb
         applyTo:
-        - manifest: gateway-service-manifest-master
+        - manifest: gateway-service-man-master
           image: gateway-service-master-docker-registry
           port: 3000
       - TASK: managed
-        deployMethod: replace
+        deployMethod: upgrade
