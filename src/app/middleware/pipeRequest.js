@@ -1,11 +1,10 @@
 import request from 'request';
-import { createForwardedRequestUrl } from '../utils';
 
 export default function pipeRequest(req, res, next) {
     try {
-        const { path, query, method, hostname } = req;
+        const { path, query, method } = req;
 
-        const url = createForwardedRequestUrl(hostname, path);
+        const url = `http://services.${process.env.APP_ENV}.bxm.internal${path}`;
 
         req.pipe(
             request({
