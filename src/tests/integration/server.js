@@ -4,10 +4,12 @@ import createServer from '../../app/server/index';
 
 describe('gateway-service server integration test', () => {
     before(() => {
+        process.env.APP_ENV = 'sit';
         process.env.APP_SERVICES_ACCESS_KEY = '1235';
     });
 
     after(() => {
+        delete process.env.APP_ENV;
         delete process.env.APP_SERVICES_ACCESS_KEY;
     });
 
