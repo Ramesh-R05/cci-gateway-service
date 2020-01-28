@@ -2,6 +2,8 @@ import nock from 'nock';
 import suptertest from 'supertest';
 import createServer from '../../app/server/index';
 
+const { server: baseServer } = createServer();
+
 describe('gateway-service server integration test', () => {
     before(() => {
         process.env.APP_ENV = 'sit';
@@ -28,7 +30,7 @@ describe('gateway-service server integration test', () => {
                     .get('/section')
                     .reply(200, { ...apiResponse });
 
-                server = createServer().server;
+                server = baseServer;
             });
 
             it('should return a valid 200 response', done => {
@@ -53,7 +55,7 @@ describe('gateway-service server integration test', () => {
             before(() => {
                 errorResponse = { message: 'you are not authorized to access this resource', error: { name: 'AuthorizationError' } };
 
-                server = createServer().server;
+                server = baseServer;
             });
 
             it('should send a 401 response', done => {
