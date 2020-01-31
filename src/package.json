@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
-    "@bxm/code-quality": "^1.1.0",
+    "@bxm/code-quality": "^1.0.0",
     "@bxm/unit-test-utils": "^3.1.0",
     "babel-core": "^6.26.3",
     "babel-plugin-istanbul": "^5.1.4",
