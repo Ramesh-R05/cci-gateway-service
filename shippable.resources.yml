@@ -96,7 +96,7 @@ resources:
         APP_ENV: "sit"
         APM_KEY: "c777240932e6282ffacc6a42ae6a0709426522bb"
         # APP_SERVICES_ACCESS_KEY - SIT
-        secure: MosTuUh8HNNQf8KwUV1LDZLJUSLgkmoNWQM/issgSWGsnnBKOn5WM9HMt0Bdw3eILfBTt2JPKDq7vZ12tmcx+5HLtmMxvwN0svhX5pXWuxjGJKptQuZiCWJlM/wCYfhxzy+4BwBUcW6GpzDlwIs5WM+ayGeEnNJLd/N0/5VLwlUyMtrh1LZOT/jhM+hq73x+/dFh4fOeZZUh04vlaADkW6zBwIOiN+5+KKUpuNUALaKroCX103YMViXNqKMFj94Ffhi9o3Z5GhbCFOpGIQWa6OfkLPoAJ0qT9QHnhCQkTqafGOT8zV15j4/8VJjvUndj4IEZUT48UN/Qg7jsgGm33w==
+        secure: qFti61PYKplYwTM1P4iRgpfVMTvdWhmOgMz7H2HpSWOrwv2HjVo6dkV96V9+F/FtZUtSYrppwqm3j+vtukDYLHdKaq3bx38Pv1jjtsjMzYRRzOatc/ZuQxnXTDBdyDQwkTLRzMAoRoWTBdY4Gnqksw9+OA2/5/csAt1aFh+WbLnlUw1JmuNbo4fMbjNhOjsbo6vJSRms8yKWsulhrcTrM5xdfjhJEKPFuGz7VEliyzJYJYX2cSEFHHinvbBsfiuJsdhWh0lDeIJcTB64Qy6FetVTZd+eClaP3vYLCaMBNfx5tYZCgyyYMpxjs4xOZmnD5GInM4yYkOU1LSqHsZlBuQ==
 
   ####################################
   # PROD environment configuration
@@ -132,4 +132,4 @@ resources:
         APP_ENV: "prod"
         APM_KEY: "c777240932e6282ffacc6a42ae6a0709426522bb"
         # APP_SERVICES_ACCESS_KEY = PROD
-        secure: NLqV5zewENEYblOrt7XQxHSvDnqJj00qXcLbMe/PKtIli3WP4kV5lnfq3hRVnAjKGyoJh56Hlg9tw+ykmt5FdcKmDVwxos7asEC8NANx+fDiBI6wpDZXvngMan3fcuivfWPktug7P2ftZvkz/9NJWH2JT4X2hRR9pjcUldq59kk4gj3b66Qs3/Tsu2zcRptjHY+5YeEa33QcZnckwPQeCJEw//F3vytgV/6wpdLAdpCtBqOSk3PCHyajACSksE2SdKrh7E/8SnrVSf39C//7HDZuW7/JW1v7sKPEkuMgnSo1QbL4BBtDhoE6pqXP3q4KtJ6zmf5ezLCYsYFHM1+3DA==
+        secure: JxAG+d9TkYtegjhBAHg+6jsC14AL6FbSk1F8HiqVo62xad2AC3tjPNbe0jWzsJFGgFb45sOGbg5e0iRGIiUvireYhqI7f7fFKtn7+lWMb7/2JYJkq/z58P/TWdZkDDyLp8QqykIbocmYh2wRTck3cXpNFLBx2x5OKBLV6VkPp7miZTIk+0JgjXJXWTBFxSoOPDoOZQZVDuHOLELRzEfjInX3cPdjDMyp9E3jpqSuWtSsPe43IOCfc9Mx0E6mHAEnYwPy8xBkxyx3veNMXCKNjbwkZhVqsO7K2t4qc05NwyZeK20aKXag8kcUgf3A0rTcLvA35EGLAkd+KYn68WsyBw==
