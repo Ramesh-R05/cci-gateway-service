@@ -31,6 +31,10 @@
                 {
                 "name": "NODE_ENV",
                 "value": "dev"
+                },
+                {
+                "name": "APP_SERVICES_ACCESS_KEY",
+                "value": "898f8bcc906c497d8ed8a224b17ff2d8"
                 }
             ],
             "logConfiguration":
