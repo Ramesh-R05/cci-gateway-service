@@ -31,6 +31,10 @@
                 {
                 "name": "NODE_ENV",
                 "value": "dev"
+                },
+                {
+                "name": "NODE_ENV",
+                "value": "dev"
                 }
             ],
             "logConfiguration":
